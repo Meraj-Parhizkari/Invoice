@@ -1,0 +1,84 @@
+﻿@model IEnumerable<InvoiceSystem.
+        ViewModels.App.PostViewModel>
+
+@{
+    ViewData["Title"] = "لیست پست ها";
+}
+
+@section Heads{
+    <partial name="_KendoCSS_JAVASCRIPT" />
+}
+<div class="card">
+    <div class="card-header">@ViewData["Title"]</div>
+    <br />
+    <div class="card-body">
+        <div class="col-md-12">
+
+            <a href="@Url.Action(nameof(InvoiceSystem.Areas.Admin.Controllers.BlogController.PostCreate))" class=" btn btn-success">
+                <i class="fa fa-plus"></i>&nbsp;افزودن
+            </a>
+        </div>
+        <br />
+        @(Html.Kendo().Grid(Model)
+    .Name("Grid")
+    .Columns(columns =>
+    {
+        columns.Bound(x=>x.Id).ClientTemplate("#= renderNumber() #")
+                  .Title("#");
+        columns.Bound(p => p.Id).Title("شناسه");
+        columns.Bound(p => p.PublishDatetime).Title("تاریخ انتشار");
+        columns.Bound(p => p.PostGroupNames).Title("گروه پست ها");
+
+        columns.Template($"<a href='/Admin/Blogs/PostEdit/#=Id#' title='ویرایش' class='text-success'><i class='fa fa-edit'></i></a>" +
+            $" <a href='\\#' title='حذف' data-id='#=Id#' class='text-danger classDelete'><i class='fa fa-trash-o'></a>").Title("عملیات").Width(70);
+    })
+
+    .Pageable()
+    //.Sortable()
+    .Scrollable(scr=>scr.Height(430))
+    //.Filterable()
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .PageSize(20)
+    .ServerOperation(false)
+    )
+    )
+
+       
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var rowNumber = 0;
+        function renderNumber() {
+            return ++rowNumber;
+        }
+
+        $(document).on("click",".classDelete",function () {
+        var id = $(this).data("id"),
+            tr = $(this).closest("tr");
+        if (confirm("آیا مطمئن هستید؟")) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action(nameof(InvoiceSystem.Areas.Admin.Controllers.BlogController.PostDelete))",
+                data: { id: id },
+                success: function (response) {
+                    if (response.Status == "@((int)HttpStatusCode.OK)") {                  
+                        var grid = $("#Grid").data("kendoGrid");
+                        grid.removeRow(tr);
+
+                        alert("رکورد با موفقیت حذف شد");
+                    } else {
+                        alert("خطا در سمت سرور")
+                    }
+                },
+                error: function (error) {
+                    alert("خطا در سمت سرور")
+                }
+            });
+        }
+    })
+    </script>
+}

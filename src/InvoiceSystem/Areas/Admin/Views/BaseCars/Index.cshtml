@@ -1,0 +1,83 @@
+﻿@model IEnumerable<InvoiceSystem.Entities.Cars.BaseCar>
+@using InvoiceSystem.Areas.Admin.Controllers 
+@{
+
+
+    ViewData["Title"] = "لیست " + ViewBag.PageName ;
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int rowNumber = 0;
+
+}
+
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card">
+    <div class="card-header"></div>
+    @if (ViewBag.CarParentName != null && ViewBag.CarParentName != "")
+    {
+        <a asp-action="@nameof(BaseCarsController.Index)" asp-route-id="@ViewBag.CarParentId" class="btn btn-primary btn-sm col-auto"><i class="fa fa-back"></i> بازگشت به لیست @ViewBag.CarParentName</a>
+    }
+    <div class="card-body table-responsive">
+        <table class="table" id="datatable">
+            <thead>
+                <tr>
+                    <th>
+                        ردیف
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.Id)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        والد
+                    </th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @(++rowNumber)
+                        </td>
+                        <td>
+                            @(item.Id)
+                        </td>
+
+                        <td>
+                            @if ((item.Children?.Count ?? 0) > 0)
+                            {
+
+                                <a asp-action="@nameof(BaseCarsController.Index)" title="لیست @ViewBag.ChildrenPageName" asp-route-id="@item.Id">
+                                    @item.Name
+                                </a>
+
+                            }
+                            else
+                            {
+                                @item.Name
+                            }
+                        </td>
+                        <td>
+                            @ViewBag.PageName
+                        </td>
+                        <td>
+
+                            <a asp-action="@nameof(BaseCarsController.Edit)"
+                               asp-route-id="@item.Id" title="ویرایش" class="text-success"><i class="fa fa-edit"></i></a>
+                            @if ((item.Children?.Count ?? 0) > 0)
+                            {
+                                <a asp-action="@nameof(BaseCarsController.Index)" asp-route-id="@item.Id" title="لیست @ViewBag.ChildrenPageName" class="text-primary"><i class="fa fa-child"></i> </a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

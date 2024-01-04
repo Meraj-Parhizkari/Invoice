@@ -1,0 +1,152 @@
+﻿@model InvoiceSystem.Entities.Invoice.Person
+@using static InvoiceSystem.Common.Public.PublicMethods
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2> ویرایش کاربر</h2>
+
+
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-content">
+            <div class="px-3">
+
+                <form asp-action="Edit" class="form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-body">
+                        @*<h4 class="form-section"><i class="ft-info"></i> اطلاعات کاربر</h4>*@
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="EconomicalNumber" class="control-label"></label>
+                                    <input asp-for="EconomicalNumber" class="form-control" />
+                                    <span asp-validation-for="EconomicalNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="RegisterNumber" class="control-label"></label>
+                                    <input asp-for="RegisterNumber" class="form-control" />
+                                    <span asp-validation-for="RegisterNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="NationalCode" class="control-label"></label>
+                                    <input asp-for="NationalCode" class="form-control" />
+                                    <span asp-validation-for="NationalCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label name="province" class="control-label">استان</label>
+                                    <select name="province" id="province" class="form-control" asp-items="ViewBag.countryDivisionsprovince"></select>
+                                    @*<span asp-validation-for="TownId" class="text-danger"></span>*@
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="TownId" class="control-label"></label>
+                                    <select asp-for="TownId" class="form-control" asp-items="ViewBag.countryDivisionsId"></select>
+                                    <span asp-validation-for="TownId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Phone" class="control-label"></label>
+                                    <input asp-for="Phone" class="form-control" />
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Mobile" class="control-label"></label>
+                                    <input asp-for="Mobile" class="form-control" />
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="ZipCode" class="control-label"></label>
+                                    <input asp-for="ZipCode" class="form-control" />
+                                    <span asp-validation-for="ZipCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Fax" class="control-label"></label>
+                                    <input asp-for="Fax" class="form-control" />
+                                    <span asp-validation-for="Fax" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="PersonTypeId" class="control-label"></label>
+                                    <select asp-for="PersonTypeId" class="form-control" asp-items="Html.GetEnumSelectList<PersonTypeEnum>()"></select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="checkbox mt-4">
+                                        <label>
+                                            <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Address" class="control-label"></label>
+                                    <textarea asp-for="Address" class="form-control"></textarea>
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-actions right">
+
+
+
+                        <button type="submit" class="btn btn-raised btn-primary h-40">
+                            <i class="fa fa-check-square-o"></i> ذخیره
+                            @*@Html.ValidationSummary(false)*@
+                        </button>
+                        <a asp-action="Index" class="btn btn-raised btn-warning h-40"><i class="ft-x"></i>بازگشت</a>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/admin/css/app-assets/js/factor.js"></script>
+}
+

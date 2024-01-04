@@ -1,0 +1,75 @@
+﻿@model InvoiceSystem.Entities.Invoice.ProductCategory
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>اطلاعات گروه کالا</h2>
+
+@*<div>
+        <h4>ProductCategory</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Parent)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Parent.Id)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-content">
+            <div class="px-3">
+
+                <form asp-action="Details" class="form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" disabled>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Parent" class="control-label"></label>
+                                    <select asp-for="ParentId" class="form-control" asp-items="ViewBag.Parents" disabled>
+                                        <option value="">تنظیم نشده است ...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-actions right">
+                        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-raised btn-primary"><i class="fa fa-check-square-o"></i> ویرایش</a>
+                        <a asp-action="Index" class="btn btn-raised btn-warning"><i class="ft-x"></i>بازگشت</a>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

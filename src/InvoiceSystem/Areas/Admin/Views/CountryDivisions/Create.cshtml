@@ -1,0 +1,62 @@
+﻿@model InvoiceSystem.Entities.Invoice.CountryDivision
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="Col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3>
+                <b>ایجاد</b>
+            </h3>
+            <hr />
+        </div>
+        <div class="card-content">
+            <div class="px-3">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Type" class="control-label"></label>
+                                    <select asp-for="Type" class="form-control"></select>
+                                    <span asp-validation-for="Type" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ParentId" class="control-label"></label>
+                                    <select asp-for="ParentId" class="form-control" asp-items="ViewBag.ParentId"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions right">
+                            <button type="submit" class="btn btn-raised btn-primary">
+                                <i class="fa fa-check-square-o"></i> ذخیره
+                            </button>
+                            <a asp-action="Index" class="btn btn-raised btn-warning"><i class="ft-x"></i>بازگشت</a>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

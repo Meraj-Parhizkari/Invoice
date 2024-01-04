@@ -1,0 +1,96 @@
+/*!
+    * custom-rtl.css last
+*/
+
+h1, h2, h3, h4, h5, h6, input, textarea, label, input, p, li, span, button {
+    font-family: IRANSans !important;
+}
+body {
+    direction: rtl;
+}
+
+div.hopscotch-bubble .hopscotch-bubble-arrow-container.left {
+    left: -34px;
+}
+
+.tagging .tag {
+    padding: 7px 0 7px 24px;
+}
+
+    .tagging .tag span {
+        border-radius: 0 2px 2px 0;
+    }
+
+    .tagging .tag .tag-i {
+        right: auto;
+        left: 8px;
+    }
+
+.main-panel {
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+
+.main-content .wizard > .steps > ul > li:before {
+    left: auto;
+    right: 0;
+}
+
+.main-content .wizard > .steps > ul > li:after {
+    right: auto !important;
+    left: 0;
+}
+
+.cropper-container {
+    direction: ltr !important;
+}
+
+#rtl-icon {
+    top: 43%;
+    left: -1px;
+}
+
+
+form label {
+    font-size: 1rem !important;
+    letter-spacing: 0px !important;
+}
+.f-direction-row-reverse {
+    flex-direction: row-reverse;
+}
+.font-size-21 {
+    font-size: 21px !important;
+}
+.navbar-nav a.nav-item, a.navbar-brand, div.alert, .zero-configuration {
+    font-family: IRANSans;
+}
+
+.white-space-nowrap {
+    white-space: nowrap;
+}
+#dntCaptchaImg{
+    float:left;
+}
+.p-set {
+    padding: 5px 18px 0px 0px;
+}
+.dntCaptcha {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.form-actions {
+    border-top: 1px solid #d3dce9;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+.right {
+    text-align: left;
+}
+.datatable td, th {
+    white-space: nowrap;
+    text-align: center !important;
+}
+

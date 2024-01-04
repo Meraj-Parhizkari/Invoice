@@ -1,0 +1,144 @@
+﻿@model InvoiceSystem.Entities.Invoice.Person
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Person</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EconomicalNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EconomicalNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RegisterNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TownId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TownId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ZipCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NationalCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NationalCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fax)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fax)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonTypeId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PersonTypeId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SystemId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SystemId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByBrowserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByBrowserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByBrowserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByBrowserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByIp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByIp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByIp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByIp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedByUserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedByUserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedByUserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedByUserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDateTime)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ModifiedDateTime)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ModifiedDateTime)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

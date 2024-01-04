@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWarn>RCS1090</NoWarn>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceSystem.Common\InvoiceSystem.Common.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.DataLayer\InvoiceSystem.DataLayer.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.Entities\InvoiceSystem.Entities.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.ViewModels\InvoiceSystem.ViewModels.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.Services\InvoiceSystem.Services.csproj" />
+
+    <ProjectReference Include="..\InvoiceSystem.DataLayer.InMemoryDatabase\InvoiceSystem.DataLayer.InMemoryDatabase.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.DataLayer.MSSQL\InvoiceSystem.DataLayer.MSSQL.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.DataLayer.SQLite\InvoiceSystem.DataLayer.SQLite.csproj" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.7" />
+  </ItemGroup>
+</Project>

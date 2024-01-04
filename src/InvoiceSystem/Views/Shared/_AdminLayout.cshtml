@@ -1,0 +1,47 @@
+﻿@using static InvoiceSystem.Common.Public.PublicMethods
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="loading">
+
+<!-- BEGIN : Head-->
+<head>
+    @await Component.InvokeAsync("RenderSection", "AdminHeadLayout")
+
+    
+    <!-- BEGIN Page Level CSS-->
+    @await RenderSectionAsync("Heads", required: false)
+    <!-- END Page Level CSS-->
+
+</head>
+<!-- END : Head-->
+<!-- BEGIN : Body-->
+<body data-col="2-columns" class="2-columns k-rtl">
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    <div class="wrapper">
+            @await Component.InvokeAsync("RenderSection", "AdminNavbar")
+        <div class="main-panel">
+            <!-- BEGIN : Main Content-->
+            <div class="main-content">
+                <div class="content-wrapper">
+                    <section id="full-layout">
+                        @RenderBody()
+                    </section>
+                </div>
+            </div>
+            <!-- END : End Main Content-->
+            <!-- BEGIN : Footer-->
+            <footer class="footer footer-static footer-light navbar-border">
+                <p class="clearfix text-muted text-sm-center px-2"><span>توسعه و پیاده سازی توسط    <a href="http://meraj.id.ir" id="dolphinsystemco" target="_blank" class="text-bold-800 primary darken-2"> معراج پرهیزکاری </a>, حقوق طراحی و توسعه محفوظ است &copy; 1385 الی @DateTime.Now.ToString("yyyy") . </span></p>
+            </footer>
+            <!-- End : Footer-->
+        </div>
+    </div>
+    <!-- ////////////////////////////////////////////////////////////////////////////-->
+    @await Component.InvokeAsync("ScriptAdminLayout")
+
+    <!-- BEGIN PAGE LEVEL JS-->
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- END PAGE LEVEL JS-->
+</body>
+<!-- END : Body-->
+</html>

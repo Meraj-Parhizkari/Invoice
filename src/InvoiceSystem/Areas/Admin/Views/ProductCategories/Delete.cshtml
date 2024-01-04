@@ -1,0 +1,57 @@
+﻿@model InvoiceSystem.Entities.Invoice.ProductCategory
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف گروه کالا</h2>
+
+<h3>آیا مطمئن هستید که می خواهید این را حذف کنید؟</h3>
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-content">
+            <div class="px-3">
+
+              
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="control-label"></label>
+                                    <input asp-for="Name" class="form-control" disabled>
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Parent" class="control-label"></label>
+                                    <select asp-for="ParentId" class="form-control" asp-items="ViewBag.Parents" disabled>
+                                        <option value="">تنظیم نشده است ...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <form asp-action="Delete">
+                        <div class="form-actions right">
+                            <button type="submit" class="p-0 border-0">
+                                <a class="btn btn-raised btn-danger m-0"><i class="fa fa-check-square-o"></i> پاک کردن</a>
+                            </button>
+                            <a asp-action="Index" class="btn btn-raised btn-warning m-0"><i class="ft-x"></i>بازگشت</a>
+                        </div>
+                    </form>
+
+               
+
+            </div>
+        </div>
+    </div>
+</div>
+    

@@ -1,0 +1,166 @@
+﻿@model InvoiceSystem.Entities.Invoice.Order
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+        <div class="Col-12">
+    <div class="card">
+    <div class="card-header">
+    <h3>
+    <b>حذف</b>
+    </h3>
+    <hr />
+    </div>
+    <div class="card-content">
+    <div class="px-3">
+        <div class="form-body">
+    <div class="row">
+
+ 
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="SellerId" class="control-label"></label>
+                <input asp-for="SellerId" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="BuyerId" class="control-label"></label>
+                <input asp-for="BuyerId" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="OrderNumber" class="control-label"></label>
+                <input asp-for="OrderNumber" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="CreatDatetime" class="control-label"></label>
+                <input asp-for="CreatDatetime" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="OrderDatetime" class="control-label"></label>
+                <input asp-for="OrderDatetime" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="CheckedOut" disabled/> @Html.DisplayNameFor(model => model.CheckedOut)
+                    </label>
+                </div>
+            </div>
+     </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Total_Discount" class="control-label"></label>
+                <input asp-for="Total_Discount" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="TotalTax" class="control-label"></label>
+                <input asp-for="TotalTax" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="TotalPay" class="control-label"></label>
+                <input asp-for="TotalPay" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="UserDescription" class="control-label"></label>
+                <input asp-for="UserDescription" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="CreatedByUserId" class="control-label"></label>
+                <input asp-for="CreatedByUserId" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="CreatedByBrowserName" class="control-label"></label>
+                <input asp-for="CreatedByBrowserName" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ModifiedByBrowserName" class="control-label"></label>
+                <input asp-for="ModifiedByBrowserName" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="CreatedByIp" class="control-label"></label>
+                <input asp-for="CreatedByIp" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ModifiedByIp" class="control-label"></label>
+                <input asp-for="ModifiedByIp" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ModifiedByUserId" class="control-label"></label>
+                <input asp-for="ModifiedByUserId" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="CreatedDateTime" class="control-label"></label>
+                <input asp-for="CreatedDateTime" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ModifiedDateTime" class="control-label"></label>
+                <input asp-for="ModifiedDateTime" class="form-control" disabled/>
+            </div>
+           </div>
+            <input type="hidden" asp-for="Id" />
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="SystemId" class="control-label"></label>
+                <input asp-for="SystemId" class="form-control" disabled/>
+            </div>
+           </div>
+</div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+ <div class="form-actions right">
+        <button type="submit" class="btn btn-raised btn-danger">
+            <i class="fa fa-check-square-o"></i> پاک کردن
+        </button>
+        <a asp-action="Index" class="btn btn-raised btn-warning"><i class="ft-x"></i>بازگشت</a>
+    </div>
+    </form>
+</div>
+</div>
+</div>
+</div>
+</div>

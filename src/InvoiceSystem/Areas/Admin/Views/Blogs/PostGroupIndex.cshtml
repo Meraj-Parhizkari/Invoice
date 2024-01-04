@@ -1,0 +1,121 @@
+﻿@model IEnumerable<InvoiceSystem.ViewModels.App.PostGroupViewModel>
+@using InvoiceSystem.Areas.Admin.Controllers 
+@{
+    ViewBag.Title = "لیست گروه های مطالب";
+}
+
+@section Heads{
+    <partial name="_KendoCSS_JAVASCRIPT" />
+}
+<div class="row">
+    <div class="col-md-12">
+        <div class="card panel-default">
+            <div class="card-header">
+                <i class="fa fa-external-link-square"></i>
+                فهرست دسته بندی ها
+
+            </div>
+            <br />
+            <div class="card-body">
+                <div class="col-md-12">
+
+                    <a href="@Url.Action(nameof(BlogController.PostGroupCreate))" class=" btn btn-success">
+                        <i class="fa fa-plus"></i>&nbsp;افزودن
+                    </a>
+                </div>
+                @(Html.Kendo().Grid(Model)
+    .Name("Grid")
+    .Columns(columns =>
+    {
+        columns.Bound(x=>x.Id).ClientTemplate("#= renderNumber() #")
+                  .Title("#");
+        columns.Bound(p => p.ParentName).Title("والد");
+        columns.Bound(p => p.Name).Title("نام");
+        columns.Bound(p => p.Title).Title("عنوان");
+        columns.Bound(p => p.SortOrder).Title("ترتیب");
+        columns.Bound(p => p.Status).Title("وضعیت");
+
+        columns.Template($"<a href='/Admin/Blogs/PostGroupEdit/#=Id#' title='ویرایش' class='text-success'><i class='fa fa-edit'></i></a>" +
+            $" <a href='\\#' title='حذف' data-id='#=Id#' class='text-danger classDelete'><i class='fa fa-trash-o'></a>").Title("عملیات").Width(70);
+    })
+
+    .Pageable()
+    //.Sortable()
+    .Scrollable(scr=>scr.Height(430))
+    //.Filterable()
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .PageSize(20)
+    .ServerOperation(false)
+    )
+    )
+                <div class="col-md-12">
+                    <div class="col-sm-12 table-responsive">
+                        <table id="myDatatable" class="table table-bordered table-hover dataTable table-striped" role="grid" aria-describedby="example2_info">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(x => x.ParentId)</th>
+                                    <th>@Html.DisplayNameFor(x => x.Name)</th>
+                                    <th>@Html.DisplayNameFor(x => x.Title)</th>
+                                    <th>@Html.DisplayNameFor(x => x.SortOrder)</th>
+                                    <th>@Html.DisplayNameFor(x => x.Status)</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@*@item.Parent?.Name*@</td>
+                                        <td>@Html.DisplayFor(x => item.Name)</td>
+                                        <td>@Html.DisplayFor(x => item.Title)</td>
+                                        <td>@Html.DisplayFor(x => item.SortOrder)</td>
+                                        <td>@Html.DisplayFor(x => item.Status)</td>
+                                        <td>
+                                            <a class=" btn-xs btn-warning btn" href="@Url.Action(nameof(BlogController.PostGroupEdit), new { id = item.Id })"><i class="fa fa-edit"></i></a>
+                                            <a href="#" data-id="@item.Id" class="btn btn-danger btn-xs classDelete"><i class="fa fa-trash-o"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        var rowNumber = 0;
+        function renderNumber() {
+            return ++rowNumber;
+        }
+
+        $(document).on("click", ".classDelete", function () {
+        var id = $(this).data("id"),
+            tr = $(this).closest("tr");
+        if (confirm("آیا مطمئن هستید؟")) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action(nameof(BlogController.PostGroupDelete))",
+                data: { id: id },
+                success: function (response) {
+                    if (response.Status == "@((int)HttpStatusCode.OK)") {
+                        var grid = $("#Grid").data("kendoGrid");
+                        grid.removeRow(tr);
+                        alert("رکورد با موفقیت حذف شد");
+                    } else {
+                        alert("خطا در سمت سرور")
+                    }
+                },
+                error: function (error) {
+                    alert("خطا در سمت سرور")
+                }
+            });
+        }
+    })
+    </script>
+}

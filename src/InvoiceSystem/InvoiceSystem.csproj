@@ -1,0 +1,120 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+       <UseNETCoreGenerator>true</UseNETCoreGenerator>
+
+    <OutputType>Exe</OutputType>
+    <NoWarn>RCS1090</NoWarn>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="wwwroot\**\*;Views\**\*;Areas\**\*.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceSystem.Common\InvoiceSystem.Common.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.Entities\InvoiceSystem.Entities.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.Mapper\InvoiceSystem.Mapper.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.Resources\InvoiceSystem.Resources.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.Services\InvoiceSystem.Services.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.ViewModels\InvoiceSystem.ViewModels.csproj" />
+    <ProjectReference Include="..\InvoiceSystem.IocConfig\InvoiceSystem.IocConfig.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.0.1" />
+    <PackageReference Include="BundlerMinifier.Core" Version="3.2.449" />
+    <PackageReference Include="DNTBreadCrumb.Core" Version="1.9.2" />
+    <PackageReference Include="DNTCaptcha.Core" Version="2.5.0" />
+    <PackageReference Include="DNTCommon.Web.Core" Version="1.8.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2020.5.2" />
+    <PackageReference Include="System.Linq" Version="4.3.0" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PlatformTarget>anycpu</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <Target Name="PrecompileScript" BeforeTargets="BeforeBuild">
+    <!-- <Exec LogStandardErrorAsError="true" Command="dotnet bundle" />   -->
+  </Target>
+  <ItemGroup>
+    <!-- extends watching group to include *.js files -->
+    <Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*;wwwroot\**\*;src\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Areas\Admin\Views\BaseCars\**" />
+    <Compile Remove="Areas\Admin\Views\Blogs\**" />
+    <Compile Remove="Areas\Car\**" />
+    <Content Remove="Areas\Admin\Views\BaseCars\**" />
+    <Content Remove="Areas\Admin\Views\Blogs\**" />
+    <Content Remove="Areas\Car\**" />
+    <EmbeddedResource Remove="Areas\Admin\Views\BaseCars\**" />
+    <EmbeddedResource Remove="Areas\Admin\Views\Blogs\**" />
+    <EmbeddedResource Remove="Areas\Car\**" />
+    <None Remove="Areas\Admin\Views\BaseCars\**" />
+    <None Remove="Areas\Admin\Views\Blogs\**" />
+    <None Remove="Areas\Car\**" />
+    <Watch Remove="Areas\Admin\Views\BaseCars\**" />
+    <Watch Remove="Areas\Admin\Views\Blogs\**" />
+    <Watch Remove="Areas\Car\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Areas\Admin\Controllers\BaseCarsController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Shared\Components\" />
+    <Folder Include="wwwroot\admin\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Templates\RazorPageGenerator\Create.cshtml" />
+    <None Include="Templates\RazorPageGenerator\CreatePageModel.cshtml" />
+    <None Include="Templates\RazorPageGenerator\Delete.cshtml" />
+    <None Include="Templates\RazorPageGenerator\DeletePageModel.cshtml" />
+    <None Include="Templates\RazorPageGenerator\Details.cshtml" />
+    <None Include="Templates\RazorPageGenerator\DetailsPageModel.cshtml" />
+    <None Include="Templates\RazorPageGenerator\Edit.cshtml" />
+    <None Include="Templates\RazorPageGenerator\EditPageModel.cshtml" />
+    <None Include="Templates\RazorPageGenerator\Empty.cshtml" />
+    <None Include="Templates\RazorPageGenerator\EmptyPageModel.cshtml" />
+    <None Include="Templates\RazorPageGenerator\List.cshtml" />
+    <None Include="Templates\RazorPageGenerator\ListPageModel.cshtml" />
+    <None Include="Templates\RazorPageGenerator\_ValidationScriptsPartial.cshtml" />
+    <None Include="Templates\ViewGenerator\Create.cshtml" />
+    <None Include="Templates\ViewGenerator\Delete.cshtml" />
+    <None Include="Templates\ViewGenerator\Details.cshtml" />
+    <None Include="Templates\ViewGenerator\Edit.cshtml" />
+    <None Include="Templates\ViewGenerator\Empty.cshtml" />
+    <None Include="Templates\ViewGenerator\List.cshtml" />
+    <None Include="Templates\ViewGenerator\_ValidationScriptsPartial.cshtml" />
+    <None Include="wwwroot\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\webfonts\fa-solid-900.woff2" />
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(MSBuildProjectDirectory)\node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(MSBuildProjectDirectory)" Command="npm install" />
+  </Target>
+</Project>

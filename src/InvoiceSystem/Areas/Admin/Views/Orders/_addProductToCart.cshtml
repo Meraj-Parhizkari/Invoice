@@ -1,0 +1,79 @@
+﻿@model InvoiceSystem.Entities.Invoice.OrderDetail
+<form method="post" asp-action="AddtoList" oninput="Computing()" data-ajax="true" data-ajax-method="post" data-ajax-complete="completed">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="ProductCategoryId" class="control-label">گروه محصول</label>
+                <div class="d-flex">
+                    <select name="ProductCategoryId" id="ProductCategoryId" class="form-control ProductCategoryItems" asp-items="ViewBag.ProductCategoryId">
+                        <option value="">انتخاب کنید ...</option>
+                        @*<span class="text-danger"></span>*@
+                    </select>
+                    <button type="button" class=" ml-2 btn btn-success" data-toggle="modal" data-target="#CreateProductCategory"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <div class="d-flex">
+                    <select class="form-control" asp-for="ProductId">
+                    </select>
+                    <button type="button" class="ml-2 btn btn-success" data-toggle="modal" data-target="#addllist"><i class="fa fa-plus"></i></button>
+                    <input type="hidden" asp-for="ProductName" class="ProductNameDisplay"/>
+                </div>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 col-sm-4">
+            <div class="form-group">
+                <label asp-for="ProductCount" class="control-label"></label>
+                <input type="number" value="0" class="form-control" asp-for="ProductCount" id="number" />
+                <span asp-validation-for="ProductCount" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"></label>
+                <input type="number" value="0" class="form-control" asp-for="ProductPrice" id="price" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">جمع کل</label>
+                <input type="number" class="form-control" disabled name="total" id="total" />
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-4">
+            <div class="form-group">
+                <label asp-for="ProductDiscunt" class="control-label"></label>
+                <input type="number" value="0" class="form-control" asp-for="ProductDiscunt" id="discount" />
+                <span asp-validation-for="ProductDiscunt" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-4">
+            <div class="form-group">
+                <label class="control-label">جمع کل پس از تخفیف</label>
+                <input type="number" class="form-control" disabled name="total_with_discount" id="total_with_discount" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <div class="form-group">
+                <label asp-for="ProductTax" class="control-label">عوارض و مالیات بر ارزش افزوده</label>
+                <input type="number" class="form-control" readonly asp-for="ProductTax" id="Taxation" />
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <div class="form-group">
+                <label class="control-label">جمع کل به علاوه مالیات بر ارزش افزوده</label>
+                <input type="number" class="form-control" disabled name="Total_Tax" id="Total_Tax" />
+            </div>
+        </div>       
+    </div>
+            <button type="submit" class="btn btn-success ml-4 mt-sm-3">افزودن</button>
+</form>

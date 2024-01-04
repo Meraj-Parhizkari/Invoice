@@ -1,0 +1,51 @@
+﻿@model InvoiceSystem.Entities.Invoice.Product
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف کالا</h2>
+
+<h3>آیا مطمئن هستید که می خواهید این را حذف کنید؟</h3>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-content">
+            <div class="px-3">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="ProductCode" class="control-label"></label>
+                                <input asp-for="ProductCode" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="ProductName" class="control-label"></label>
+                                <input asp-for="ProductName" class="form-control" disabled />
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label asp-for="ProductCategoryId" class="control-label"></label>
+                                <select asp-for="ProductCategoryId" class="form-control" asp-items="ViewBag.ProductCategoryId" disabled></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form asp-action="Delete">
+                    <div class="form-actions right">
+                        <button type="submit" class="p-0 border-0">
+                            <p class="btn btn-raised btn-danger m-0"><i class="fa fa-check-square-o"></i> پاک کردن</p>
+                        </button>
+                        <a asp-action="Index" class="btn btn-raised btn-warning m-0"><i class="ft-x"></i>بازگشت</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

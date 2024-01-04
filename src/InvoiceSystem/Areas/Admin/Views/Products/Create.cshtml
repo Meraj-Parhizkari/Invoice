@@ -1,0 +1,125 @@
+﻿@model InvoiceSystem.Entities.Invoice.Product
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>ایجاد کالای جدید</h2>
+
+
+
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+
+        </div>
+        <div class="card-content">
+            <div class="px-3">
+
+                <form asp-action="Create" class="form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ProductCategoryId" class="control-label"></label>
+                                    <div class="d-flex">
+                                        <select asp-for="ProductCategoryId" class="form-control ProductCategoryItems" asp-items="ViewBag.ProductCategoryId"></select>
+                                        <button type="button" class=" ml-2 btn btn-success" data-toggle="modal" data-target="#CreateProductCategory"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ProductCode" class="control-label"></label>
+                                    <input asp-for="ProductCode" class="form-control" />
+                                    <span asp-validation-for="ProductCode" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="ProductName" class="control-label"></label>
+                                    <input asp-for="ProductName" class="form-control" />
+                                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-actions right">
+
+
+
+                        <button type="submit" class="btn btn-raised btn-primary">
+                            <i class="fa fa-check-square-o"></i> ایجاد
+                        </button>
+                        <a asp-action="Index" class="btn btn-raised btn-warning">بازگشت</a>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="ShowProductCategoryList">
+    <partial name="../ProductCategories/_createProductCategory.cshtml" />
+</div>  
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/admin/css/app-assets/js/components-modal.js"></script>
+<script>
+    ProductCategorySuccess = function (result) {
+        if (result.success) {
+            alert("گروه محصول با موفقیت ایجاد گردید!");
+            //=======================
+            $.ajax({
+                url: "/Admin/Productcategories/ShowProductCategoryList",
+                datatype: "JSON",
+                type: 'Get',
+                success: function (result) {
+                    $("#ParentId").empty();
+                    $("#ProductCategoryId").empty();
+                    $("#Name").val("");
+                    if (result.length > 0) {
+                        $("#ParentId").append($("<option>", {
+                            value: "",
+                            text: 'در صورت نیاز انتخاب کنید...'
+                        }));
+                        $.each(result, function (index, item) {
+                            //console.log(index);
+                            //console.log(item.productName);s
+                            $("#ParentId").append($("<option>", {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+                        $("#ProductCategoryId").append($("<option>", {
+                            value: "",
+                            text: 'در صورت نیاز انتخاب کنید...'
+                        }));
+                        $.each(result, function (index, item) {
+                            $("#ProductCategoryId").append($("<option>", {
+                                value: item.id,
+                                text: item.name
+                            }));
+                        });
+                    } else {
+                        $("#ProductCategoryId").append($("<option>", {
+                            value: "",
+                            text: 'هیچ داده ای یافت نشد!'
+                        }));
+                    }
+                }
+            });
+        }
+    }
+</script>
+}

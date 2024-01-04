@@ -1,0 +1,127 @@
+﻿@*@model InvoiceSystem.ViewModels.InvoiceSystem.OrderViewModel*@
+@model InvoiceSystem.Entities.Invoice.Order
+
+@{ ViewData["Title"] = "Create"; }
+
+<link href="~/admin/css/app-assets/css/jalalidatepicker.min.css" rel="stylesheet" />
+<div class="card">
+    <div class="card-header">
+        <h4>سفارش</h4>
+    </div>
+    <hr />
+    <div class="col-12">
+        <div class="card-content">
+            <partial name="_addProductToCart" />
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h4>لیست فاکتور</h4>
+    </div>
+    <div class="card-content" id="ShoppingList">
+            <partial name="_ShoppingList" />
+    </div>
+</div>
+
+<div class="card">
+    <div class="col-12">
+        <div class="card-header">
+            <h4>صدور فاکتور</h4>
+        </div>
+        <hr />
+        <div class="card-content">
+
+            <form asp-action="Create" method="post">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="BuyerId" class="control-label">خریدار</label>
+                            <div class="d-flex">
+                                <select asp-for="BuyerId" class="form-control" asp-items="ViewBag.PersonId">
+                                </select>
+                                <button type="button" class="ml-2 btn btn-success" data-toggle="modal" data-target="#CreatePeopleModal"><i class="fa fa-plus"></i></button>
+                            </div>
+                            <span asp-validation-for="BuyerId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="CreatDatetime" class="control-label"></label>
+                            <div class="d-flex">
+                                <input type="text" id="ShamsiDataTime" class="form-control" name="CreatDatetime" data-jdp />
+
+                            </div>
+                            <span asp-validation-for="CreatDatetime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="OrderDatetime" class="control-label"></label>
+                            <input type="text" id="OrderDatetime" class="form-control" name="OrderDatetime" data-jdp />
+                            <span asp-validation-for="OrderDatetime" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="CheckedOut" class="control-label"></label>
+
+                            <input asp-for="CheckedOut" />
+
+                            <span asp-validation-for="CheckedOut" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+
+                            <textarea asp-for="Description" class="form-control"></textarea>
+
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="form-group">
+                            <label asp-for="UserDescription" class="control-label"></label>
+
+                            <textarea asp-for="UserDescription" class="form-control"></textarea>
+
+                            <span asp-validation-for="UserDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success ml-5 text-bold-800 text-highlight">صدور فاکتور</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div id="ShowProductCategoryList">
+    <partial name="../ProductCategories/_createProductCategory.cshtml" />
+</div>
+<partial name="../products/_createProducts.cshtml" />
+<div id="getpeoplelist">
+    <partial name="../people/_createPeople.cshtml" />
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/admin/css/app-assets/js/components-modal.js"></script>
+    <script src="~/admin/css/app-assets/js/jalalidatepicker.min.js"></script>
+    <script src="~/admin/css/app-assets/js/factor.js"></script>
+    <script>
+        jalaliDatepicker.startWatch({
+            separatorChar: "/",
+            minDate: "attr",
+            maxDate: "attr",
+            changeMonthRotateYear: true,
+            showTodayBtn: true,
+            showEmptyBtn: true,
+            autoShow: true,
+            autoHide: true,
+            showTodayBtn: true,
+        });
+    </script>
+}

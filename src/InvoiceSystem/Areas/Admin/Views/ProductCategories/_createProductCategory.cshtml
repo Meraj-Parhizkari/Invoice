@@ -1,0 +1,48 @@
+﻿@model InvoiceSystem.Entities.Invoice.ProductCategory
+
+
+<div class="modal fade" id="CreateProductCategory" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header d-flex f-direction-row-reverse">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">افزودن گروه محصول جدید</h4>
+            </div>
+            <form method="post" asp-controller="ProductCategories" asp-action="CreateAjax" class="form" data-ajax="true" data-ajax-method="post" data-ajax-success="ProductCategorySuccess">
+                <div class="modal-body">
+                    <div class="form-body">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Name" class="control-label"></label>
+                                        <input asp-for="Name" class="form-control" />
+                                        <span asp-validation-for="Name" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label asp-for="Parent" class="control-label"></label>
+                                        <select asp-for="ParentId" class="form-control" asp-items="ViewBag.ProductCategoryId">
+                                            <option value="">در صورت نیاز انتخاب کنید...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-raised btn-primary">
+                        <i class="fa fa-check-square-o"></i> ذخیره
+                    </button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">بازگشت</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

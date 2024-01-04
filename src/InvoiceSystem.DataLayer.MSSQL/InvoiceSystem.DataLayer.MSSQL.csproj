@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoWarn>RCS1090</NoWarn>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Migrations\20210410092849_init_productCategoryId-in-Order.cs" />
+    <Compile Remove="Migrations\20210410092849_init_productCategoryId-in-Order.Designer.cs" />
+    <Compile Remove="Migrations\20210410093633_remove_productCategoryId-in-Order.cs" />
+    <Compile Remove="Migrations\20210410093633_remove_productCategoryId-in-Order.Designer.cs" />
+    <Compile Remove="Migrations\20210516121328_Add_ShadowsProps_ProductCategory1.cs" />
+    <Compile Remove="Migrations\20210516121328_Add_ShadowsProps_ProductCategory1.Designer.cs" />
+    <Compile Remove="Migrations\20210522100434_change_Data_to_DataTime_in_Order.cs" />
+    <Compile Remove="Migrations\20210522100434_change_Data_to_DataTime_in_Order.Designer.cs" />
+    <Compile Remove="Migrations\20210523090646_Test.cs" />
+    <Compile Remove="Migrations\20210523090646_Test.Designer.cs" />
+    <Compile Remove="Migrations\20210526065334_Write_Countrydivision_displaye.cs" />
+    <Compile Remove="Migrations\20210526065334_Write_Countrydivision_displaye.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.7" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InvoiceSystem.DataLayer\InvoiceSystem.DataLayer.csproj" />
+  </ItemGroup>
+</Project>

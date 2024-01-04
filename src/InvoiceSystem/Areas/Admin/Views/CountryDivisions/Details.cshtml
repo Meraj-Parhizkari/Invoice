@@ -1,0 +1,48 @@
+﻿@model InvoiceSystem.Entities.Invoice.CountryDivision
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+    <div class="Col-12">
+    <div class="card">
+    <div class="card-header">
+    <h3>
+    <b>اطلاعات</b>
+    </h3>
+    <hr />
+    </div>
+    <div class="card-content">
+    <div class="px-3">
+        <div class="form-body">
+    <div class="row">
+            <input type="hidden" asp-for="Id" />
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" disabled/>
+            </div>
+           </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <select asp-for="Type" class="form-control" disabled></select>
+            </div>
+    </div>
+                 <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label"></label>
+                <select asp-for="ParentId" class="form-control" asp-items="ViewBag.ParentId" disabled></select>
+            </div>
+    </div>
+</div>
+    <div class="form-actions right">
+    <a asp-action="Edit" class="btn btn-raised btn-primary" asp-route-id="@Model.Id"> <i class="fa fa-check-square-o"></i> ویرایش</a> 
+    <a asp-action="Index" class="btn btn-raised btn-warning"><i class="ft-x"></i>بازگشت</a>
+    </div>
+</div>
+    </div>  
+    </div>
+</div>
+</div>

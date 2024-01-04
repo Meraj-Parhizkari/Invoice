@@ -1,0 +1,147 @@
+﻿@model InvoiceSystem.ViewModels.App.PostViewModel
+
+@{
+    ViewBag.Title = "ویرایش مطلب";
+}
+@section Heads{ 
+    <link href="~/lib/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+<div class="col-md-12">
+    <h3>@ViewBag.Title</h3>
+</div>
+<form asp-antiforgery="true"
+      asp-action="@nameof(InvoiceSystem.Areas.Admin.Controllers.BlogController.PostEdit)"
+      id="frmCreate"
+      method="post"
+      enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger" style="color:red;"></div>
+    <input asp-for="Id" type="hidden" />
+    <input asp-for="BackgroundImage" type="hidden" />
+    <input asp-for="Image" type="hidden" />
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">محتوای @ViewBag.TypeName</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Name" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Title" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="MetaDescription"></label>
+                        <textarea class="form-control" asp-for="MetaDescription"></textarea>
+                        <span asp-validation-for="MetaDescription" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="PostSummery"></label>
+                        <textarea class="form-control" asp-for="PostSummery"></textarea>
+                        <span asp-validation-for="PostSummery" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="PostContent"></label>
+                        <textarea class="form-control" asp-for="PostContent"></textarea>
+                        <span asp-validation-for="PostContent" class="text-danger" style="color:red;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- start: ACCORDION PANEL -->
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">وضعیت کلی پست</h4>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Slug"></label>
+                        <input asp-for="Slug" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Slug" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="PublishDatetime"></label>
+                        <input asp-for="PublishDatetime" Value="@DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")" class="form-control ltr text-right" autocomplete="off" />
+                        <span asp-validation-for="PublishDatetime" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="IsActive"></label>
+                        <input asp-for="IsActive" class="form-control" />
+                        <span asp-validation-for="IsActive" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="ویرایش" class="btn btn-success" />
+                    </div>
+                </div>
+            </div>
+            <!-- end: ACCORDION PANEL -->
+            <!-- start: ACCORDION PANEL -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">ویژگی های پست</h4>
+                </div>
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="PostGroupsIds"></label>
+                        <div class="b-find__selector">
+                            <select class="select2 form-control" asp-for="PostGroupsIds" multiple="multiple" asp-items="ViewBag.PostGroups" data-width="100%" data-style="ui-select"></select>
+                            <span asp-validation-for="PostGroupsIds" class="text-danger" style="color:red;"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="MetaKeywords"></label>
+                        <textarea class="form-control" asp-for="MetaKeywords"></textarea>
+                        <span asp-validation-for="MetaKeywords" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="ThumbnailFile"></label>
+                        <input asp-for="ThumbnailFile" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="ThumbnailFile" class="text-danger" style="color:red;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="BackgroundFile"></label>
+                        <input asp-for="BackgroundFile" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="BackgroundFile" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                </div>
+            </div>
+            <!-- end: ACCORDION PANEL -->
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/lib/select2/select2.min.js"></script>
+<script src="~/lib/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script>
+        $(".select2").select2({
+            theme: "bootstrap"
+        });
+
+        $("#MetaKeywords").tagsinput({
+
+        });
+    </script>
+}

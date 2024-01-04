@@ -1,0 +1,81 @@
+﻿@model IEnumerable<InvoiceSystem.Entities.App.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="card">
+    <div class="card-body table-responsive">
+    <h4>@ViewData["Title"]</h4>
+    <p>
+        <a class="btn btn-success" asp-action="Create"><i class="fa fa-plus"></i> افزودن</a>
+    </p>
+    <table class="table" id="datatable">
+        <thead>
+            <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Link)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Icon)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SortOrder)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Type)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Parent)
+                        </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Link)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Icon)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SortOrder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Type)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Parent.Id)
+                        </td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="danger" data-original-title="" title=""><i class="ft-x font-medium-3 mr-2"></i></a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="info" data-original-title="" title=""><i class="ft-eye font-medium-3 mr-2"></i></a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="success" data-original-title="" title=""><i class="ft-edit-2 font-medium-3 mr-2"></i></a>
+                    </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+</div>

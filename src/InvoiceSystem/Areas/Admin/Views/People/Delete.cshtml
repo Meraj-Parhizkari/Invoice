@@ -1,0 +1,135 @@
+﻿@model InvoiceSystem.Entities.Invoice.Person
+@using static InvoiceSystem.Common.Public.PublicMethods
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>حذف کاربر</h2>
+
+<h3>آیا مطمئن هستید که می خواهید این را حذف کنید؟</h3>
+
+<div class="card">
+    <div class="card-header"></div>
+    <div class="card-content">
+        <div class="px-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-body">
+                @*<h4 class="form-section"><i class="ft-info"></i> اطلاعات کاربر</h4>*@
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control" disabled />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="EconomicalNumber" class="control-label"></label>
+                            <input asp-for="EconomicalNumber" class="form-control" disabled />
+                            <span asp-validation-for="EconomicalNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="RegisterNumber" class="control-label"></label>
+                            <input asp-for="RegisterNumber" class="form-control" disabled />
+                            <span asp-validation-for="RegisterNumber" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="NationalCode" class="control-label"></label>
+                            <input asp-for="NationalCode" class="form-control" disabled />
+                            <span asp-validation-for="NationalCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label name="province" class="control-label">استان</label>
+                            <select name="province" id="province" class="form-control" disabled asp-items="ViewBag.countryDivisionsprovince"></select>
+                            @*<span asp-validation-for="TownId" class="text-danger"></span>*@
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="TownId" class="control-label"></label>
+                            <select asp-for="TownId" class="form-control" asp-items="ViewBag.countryDivisionsId" disabled></select>
+                            <span asp-validation-for="TownId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Phone" class="control-label"></label>
+                            <input asp-for="Phone" class="form-control" disabled />
+                            <span asp-validation-for="Phone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Mobile" class="control-label"></label>
+                            <input asp-for="Mobile" class="form-control" disabled />
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="ZipCode" class="control-label"></label>
+                            <input asp-for="ZipCode" class="form-control" disabled />
+                            <span asp-validation-for="ZipCode" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="Fax" class="control-label"></label>
+                            <input asp-for="Fax" class="form-control" disabled />
+                            <span asp-validation-for="Fax" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label asp-for="PersonTypeId" class="control-label"></label>
+                            <select asp-for="PersonTypeId" class="form-control" asp-items="Html.GetEnumSelectList<PersonTypeEnum>()" disabled></select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <div class="checkbox mt-4">
+                                <label>
+                                    <input asp-for="IsActive" disabled /> @Html.DisplayNameFor(model => model.IsActive)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Address" class="control-label"></label>
+                            <textarea asp-for="Address" class="form-control" disabled></textarea>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" disabled />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <form asp-action="Delete">
+                <div class="form-actions right">
+                    <button type="submit" class="p-0 border-0">
+                        <p class="btn btn-raised btn-danger m-0"><i class="fa fa-check-square-o"></i>پاک کردن</p>
+                    </button>
+                    <a asp-action="Index" class="btn btn-raised btn-warning m-0"><i class="ft-x"></i>بازگشت</a>
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+
+@section Scripts {
+    <script src="~/admin/css/app-assets/js/factor.js"></script>
+}

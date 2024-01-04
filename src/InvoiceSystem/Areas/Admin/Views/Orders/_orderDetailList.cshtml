@@ -1,0 +1,59 @@
+﻿
+@using InvoiceSystem.Entities.Invoice
+@model List<OrderDetail>
+@{
+
+
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>شرح کالا</th>
+            <th>تعداد</th>
+            <th>واحد</th>
+            <th>مبلغ</th>
+            <th>جمع کل</th>
+            <th>تخفیف</th>
+            <th>جمع کل پس از تخفیف</th>
+            <th>مالیات</th>
+            <th>جمع کل با مالیات</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(Model.ToList().IndexOf(item)+1)</td>
+                <td>@item.ProductName</td>
+                <td>@item.ProductCount.ToString("N0")</td>
+                <td>عدد</td>
+                <td>@item.ProductPrice.ToString("N0")</td>
+                <td>@((item.ProductCount * item.ProductPrice).ToString("N0"))</td>
+                <td>@item.ProductDiscunt.ToString("N0")</td>
+                <td>@(((item.ProductCount * item.ProductPrice)-item.ProductDiscunt).ToString("N0"))</td>
+                <td>@((((item.ProductCount * item.ProductPrice)-item.ProductDiscunt)*9/100).ToString("N0"))</td>
+                <td>@((((item.ProductCount * item.ProductPrice)-item.ProductDiscunt)+(((item.ProductCount * item.ProductPrice)-item.ProductDiscunt)*9/100)).ToString("N0"))</td>
+
+            </tr>
+        }
+
+
+
+    </tbody>
+    <tfoot>
+
+        <tr>
+            <td colspan="5">جمع کل:</td>
+            <td>@(Model.Sum(item=> item.ProductCount * item.ProductPrice).ToString("N0"))</td>
+            <td>@(Model.Sum(item=> item.ProductDiscunt).ToString("N0"))</td>
+            <td>@(Model.Sum(item=> (item.ProductCount * item.ProductPrice) - item.ProductDiscunt).ToString("N0"))</td>
+            <td>@(Model.Sum(item=> ((item.ProductCount * item.ProductPrice) - item.ProductDiscunt) * 9 / 100).ToString("N0"))</td>
+            <td>@(Model.Sum(item=> (((item.ProductCount * item.ProductPrice) - item.ProductDiscunt) + (((item.ProductCount * item.ProductPrice) - item.ProductDiscunt) * 9 / 100))).ToString("N0"))</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>

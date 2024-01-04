@@ -1,0 +1,198 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "ثبت نام";
+    Layout = "";
+}
+@*<div class="card mt-5">
+        <div class="card-header">
+            <h5 class="card-title">@ViewData["Title"]</h5>
+        </div>
+        <div class="card-body">
+            <form asp-controller="Register"
+                  asp-action="Index"
+                  method="post">
+                <partial name="_CustomValidationSummary" />
+                <div class="form-group row">
+                    <label asp-for="FirstName" class="col-md-2 col-form-label text-md-left"></label>
+                    <div class="col-md-10">
+                        <input dir="rtl" asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="LastName" class="col-md-2 col-form-label text-md-left"></label>
+                    <div class="col-md-10">
+                        <input dir="rtl" asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Username" class="col-md-2 col-form-label text-md-left"></label>
+                    <div class="col-md-10">
+                        <input dir="ltr" asp-for="Username" onblur="triggerRemoteValidation()" class="form-control" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                        <span class="optional-label">(جهت لاگین)</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Email" class="col-md-2 col-form-label text-md-left"></label>
+                    <div class="col-md-10">
+                        <input dir="ltr" asp-for="Email" onblur="triggerRemoteValidation()" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="Password" class="col-md-2 col-form-label text-md-left"></label>
+                    <div class="col-md-10">
+                        <input dir="ltr" asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="ConfirmPassword" class="col-md-2 col-form-label text-md-left"></label>
+                    <div class="col-md-10">
+                        <input dir="ltr" asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col col-md-2 col-form-label text-md-left">
+                        کد امنیتی
+                    </label>
+                    <div class="col col-md-10">
+                        <dnt-captcha asp-captcha-generator-max="30"
+                                     asp-captcha-generator-min="1"
+                                     asp-captcha-generator-language="Persian"
+                                     asp-captcha-generator-display-mode="SumOfTwoNumbers"
+                                     asp-font-name="Tahoma"
+                                     asp-font-size="20"
+                                     asp-refresh-button-class="fa fa-redo btn-sm"
+                                     asp-fore-color="#333333"
+                                     asp-back-color="#ccc"
+                                     asp-text-box-class="text-box form-control"
+                                     asp-text-box-template="<div class='input-group'><span class='input-group-prepend'><span class='input-group-text'><i class='fa fa-lock'></i></span></span>{0}</div>"
+                                     asp-validation-message-class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="offset-md-2 col-md-10">
+                        <button type="submit" class="btn btn-info col-md-2">ثبت نام</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>*@
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/admin/css/app-assets/fonts/font-awesome/css/font-awesome.css">
+    <link href="~/css/site.min.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+
+    <section id="regestration">
+        <div class="container-fluid">
+            <div class="row full-height-vh m-0">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-body register-img">
+                                <form asp-controller="Register"
+                                      asp-action="Index"
+                                      method="post">
+                                    <partial name="_CustomValidationSummary" />
+                                    <div class="row m-0">
+                                        <div class="col-lg-6 d-none d-lg-block py-2 text-center mb-auto mt-auto">
+                                            <img src="../../assets/img/register.png" alt="" class="img-fluid pl-3" width="400"
+                                                 height="230">
+                                        </div>
+                                        <div class="col-lg-6 col-md-12 px-4 pt-3 bg-white">
+                                            <h4 class="card-title mb-2">ساختن اکانت</h4>
+                                            <p class="card-text mb-3">
+                                                فرم زیر را برای ایجاد یک حساب جدید پر کنید.
+                                            </p>
+                                            <label asp-for="Username" class="col-form-label text-md-left"></label>
+                                            <input asp-for="Username" class="form-control mb-2" placeholder="نام کاربری" />
+                                            <span asp-validation-for="Username" class="text-danger"></span>
+
+                                            <label asp-for="FirstName" class="col-form-label text-md-left"></label>
+                                            <input asp-for="FirstName" class="form-control mb-2" placeholder="نام" />
+                                            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+                                            <label asp-for="LastName" class="col-form-label text-md-left"></label>
+                                            <input asp-for="LastName" class="form-control mb-2" placeholder="نام خانوادگی" />
+                                            <span asp-validation-for="LastName" class="text-danger"></span>
+
+                                            <label asp-for="Email" class="col-form-label text-md-left"></label>
+                                            <input asp-for="Email" class="form-control mb-2" placeholder="ایمیل" />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+
+                                            <label asp-for="Password" class="col-form-label text-md-left"></label>
+                                            <input asp-for="Password" class="form-control mb-2" placeholder="کلمه‌ی عبور" />
+                                            <span asp-validation-for="Password" class="text-danger"></span>
+
+                                            <label asp-for="ConfirmPassword" class="col-form-label text-md-left"></label>
+                                            <input asp-for="ConfirmPassword" class="form-control mb-2" placeholder=" تایید کلمه‌ی عبور" />
+                                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+                                            <div class="w-100">
+                                                <dnt-captcha asp-captcha-generator-max="30"
+                                                             asp-captcha-generator-min="1"
+                                                             asp-captcha-generator-language="Persian"
+                                                             asp-captcha-generator-display-mode="SumOfTwoNumbers"
+                                                             asp-font-name="Tahoma"
+                                                             asp-font-size="20"
+                                                             asp-refresh-button-class="fa fa-redo btn-sm"
+                                                             asp-fore-color="#333333"
+                                                             asp-back-color="#ccc"
+                                                             asp-text-box-class="text-box form-control"
+                                                             asp-text-box-template="<div class='input-group'><span class='input-group-prepend'><span class='input-group-text'><i class='fa fa-lock'></i></span></span>{0}</div>"
+                                                             asp-validation-message-class="text-danger" />
+                                            </div>
+
+                                            <div class="fg-actions">
+                                                <div class="recover-pass">
+                                                    <button class="btn btn-primary">
+                                                        <a href="login-page.html" class="text-decoration-none text-white">
+                                                            ثبت نام
+                                                        </a>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    @section Scripts
+{
+        <script type="text/javascript">
+        function triggerRemoteValidation() {
+            $('#@nameof(RegisterViewModel.Username)').removeData('previousValue');
+            $('form').validate().element('#@nameof(RegisterViewModel.Username)');
+
+            $('#@nameof(RegisterViewModel.Email)').removeData('previousValue');
+            $('form').validate().element('#@nameof(RegisterViewModel.Email)');
+        }
+        </script>
+    }
+    <script src="~/js/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.min.js" type="text/javascript" asp-append-version="true"></script>
+</body>
+</html>

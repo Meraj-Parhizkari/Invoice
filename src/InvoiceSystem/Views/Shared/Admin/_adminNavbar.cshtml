@@ -1,0 +1,152 @@
+﻿@model List<InvoiceSystem.Entities.App.Menu>
+@using InvoiceSystem.Entities.App
+@using InvoiceSystem.Areas.Identity.Controllers
+@using InvoiceSystem.Common.IdentityToolkit;
+
+
+<!-- main menu-->
+<!--.main-menu(class="#{menuColor} #{menuOpenType}", class=(menuShadow == true ? 'menu-shadow' : ''))-->
+<div data-active-color="white" data-background-color="black" data-image="/admin/css/app-assets/img/sidebar-bg/01.jpg" class="app-sidebar">
+    <!-- main menu header-->
+    <!-- Sidebar Header For Starter Kit starts-->
+    <div class="sidebar-header">
+        <div class="logo clearfix">
+            <a href="~/admin/ProductCategories/" class="logo-text float-left font-size-21">
+                <div class="logo-img"><img src="/admin/css/app-assets/img/logo.png" /></div><span class="text align-middle">مدیریت فاکتور </span>
+            </a><a id="sidebarToggle" href="javascript:;" class="nav-toggle d-none d-sm-none d-md-none d-lg-block"><i data-toggle="expanded" class="ft-toggle-right toggle-icon"></i></a><a id="sidebarClose" href="javascript:;" class="nav-close d-block d-md-block d-lg-none d-xl-none"><i class="ft-x"></i></a>
+        </div>
+    </div>
+    <!-- Sidebar Header Ends-->
+    <!-- / main menu header-->
+    <!-- main menu content-->
+    <div class="sidebar-content">
+        <div class="nav-container">
+            <ul id="main-menu-navigation" data-menu="menu-navigation" data-scroll-to-active="true" class="navigation navigation-main">
+                <li class="has-sub nav-item open">
+                    <a href="#"><i class="ft-home"></i><span data-i18n="" class="menu-title">مدیریت اطلاعات پایه</span></a>
+                    <ul class="menu-content">
+                        <li class="active is-shown">
+                            <a href="~/admin/ProductCategories/" class="menu-item">مدیریت گروه کالا</a>
+                        </li>
+                        <li class="is-shown">
+                            <a href="~/admin/ProductCategories/create" class="menu-item">ایجاد گروه جدید</a>
+                        </li>
+                        <li class="is-shown">
+                            <a href="~/admin/Products/" class="menu-item">مدیریت کالا ها</a>
+                        </li>
+                        <li class="is-shown">
+                            <a href="~/admin/Products/create" class="menu-item">ایجاد کالای جدید</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="has-sub nav-item">
+                    <a href="#">
+                        <i class="ft-grid"></i><span data-i18n="" class="menu-title">مدیریت مشتریان</span>
+                    </a>
+                    <ul class="menu-content" style="">
+                        <li class="">
+                            <a href="~/admin/People/" class="menu-item">مدیریت مشتری</a>
+                        </li>
+                        <li class="">
+                            <a href="~/admin/People/create" class="menu-item">ایجاد مشتری</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-sub nav-item">
+                    <a href="#">
+                        <i class="ft-layers"></i><span data-i18n="" class="menu-title">سفارشات</span>
+                    </a>
+                    <ul class="menu-content" style="">
+                        <li class="">
+                            <a href="~/admin/Orders" class="menu-item">لیست سفارشات</a>
+                        </li>
+                        <li class="">
+                            <a href="~/admin/Orders/Create" class="menu-item">ایجاد سفارش جدید</a>
+                        </li>
+                    </ul>
+                </li>
+
+                @if (User.IsInRole(ConstantRoles.Admin))
+                {
+                    <li class="has-sub nav-item">
+                        <a href="#">
+                            <i class="ft-map"></i><span data-i18n="" class="menu-title">مدیریت شهر و استان</span>
+                        </a>
+                        <ul class="menu-content" style="">
+                            <li class="">
+                                <a href="~/admin/CountryDivisions" class="menu-item">لیست شهر و استان</a>
+                            </li>
+                            <li class="">
+                                <a href="~/admin/CountryDivisions/Create" class="menu-item">ایجاد شهر جدید</a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+
+                @foreach (Menu m1 in Model.Where(x => x.ParentId == null).OrderBy(x => x.SortOrder))
+                {
+
+
+                    <li class="has-sub nav-item">
+                        <a href="#"><i class="ft-align-left"></i><span data-i18n="" class="menu-title">@m1.Title</span></a>
+                        @if (Model.Any(x => x.ParentId == m1.Id))
+                        {
+                            <ul class="menu-content">
+                                @foreach (Menu m2 in Model.Where(x => x.ParentId == m1.Id).OrderBy(x => x.SortOrder))
+                                {
+                                    <li>
+                                        <a href="@m2.Link" class="menu-item">@m2.Title</a>
+                                    </li>
+
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+
+            </ul>
+        </div>
+    </div>
+    <!-- main menu content-->
+    <div class="sidebar-background"></div>
+    <!-- main menu footer-->
+    <!-- include includes/menu-footer-->
+    <!-- main menu footer-->
+</div>
+<!-- / main menu-->
+<!-- Navbar (Header) Starts-->
+<nav class="navbar navbar-expand-lg navbar-light bg-faded header-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" data-toggle="collapse" class="navbar-toggle d-lg-none float-left"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><span class="d-lg-none navbar-right navbar-collapse-toggle"><a aria-controls="navbarSupportedContent" href="javascript:;" class="open-navbar-container black"><i class="ft-more-vertical"></i></a></span>
+
+        </div>
+        <div class="navbar-container">
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav d-flex">
+
+                    <li class="nav-item mr-2 d-none d-lg-block">
+                        <a id="navbar-fullscreen" href="javascript:;" class="nav-link apptogglefullscreen">
+                            <i class="ft-maximize font-medium-3 blue-grey darken-4"></i>
+                            <p class="d-none">fullscreen</p>
+                        </a>
+                    </li>
+
+                    <li class="dropdown nav-item">
+                        <a id="dropdownBasic3" href="#" data-toggle="dropdown" class="nav-link position-relative dropdown-toggle">
+                            <i class="ft-user font-medium-3 blue-grey darken-4"></i>
+                            <p class="d-none">User Settings</p>
+                        </a>
+                        <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu text-left     dropdown-menu-right">
+                            <a href="javascript:;" class="dropdown-item py-1"> @User.Identity.GetUserFirstName()</a>
+
+                            <div class="dropdown-divider"></div><a href="@Url.Action(nameof(LoginController.LogOff),"Login",new { Area="Identity" })" class="dropdown-item"><i class="ft-power mr-2"></i><span>خروج</span></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Navbar (Header) Ends-->

@@ -1,0 +1,71 @@
+﻿@using InvoiceSystem.ViewModels.InvoiceSystem
+@using Microsoft.AspNetCore.Session
+@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json
+@{
+    List<OrderDetailViewModel> itemList = new List<OrderDetailViewModel>();
+    if (Context.Session.GetString("Card") != null)
+    {
+        itemList = JsonConvert.DeserializeObject<List<OrderDetailViewModel>>(Context.Session.GetString("Card").ToString());
+
+    }
+
+}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ردیف</th>
+            <th>شرح کالا</th>
+            <th>تعداد</th>
+            <th>واحد</th>
+            <th>مبلغ</th>
+            <th>جمع کل</th>
+            <th>تخفیف</th>
+            <th>جمع کل پس از تخفیف</th>
+            <th>مالیات</th>
+            <th>جمع کل با مالیات</th>
+            <th>عملیات</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in itemList)
+        {
+            <tr>
+                <td>@(itemList.IndexOf(item)+1)</td>
+                <td>@(item.ProductName)</td>
+                <td>@((item.ProductCount).ToString("N0"))</td>
+                <td>عدد</td>
+                <td>@((item.ProductPrice).ToString("N0"))</td>
+                <td>@((item.ProductCount * item.ProductPrice).ToString("N0"))</td>
+                <td>@((item.ProductDiscunt).ToString("N0"))</td>
+                <td>@(((item.ProductCount * item.ProductPrice)-item.ProductDiscunt).ToString("N0"))</td>
+                <td>@((((item.ProductCount * item.ProductPrice)-item.ProductDiscunt)*9/100).ToString("N0"))</td>
+                <td>@((((item.ProductCount * item.ProductPrice)-item.ProductDiscunt)+(((item.ProductCount * item.ProductPrice)-item.ProductDiscunt)*9/100)).ToString("N0"))</td>
+                <td>
+                    <button type="button" onclick="RemoveItemFromShoppingCard(@item.ProductId)" class="border-0 danger bg-transparent">
+                        <i class="font-medium-3 ft-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+
+
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">جمع کل:</td>
+            <td>@(itemList.Sum(item=> item.ProductCount * item.ProductPrice).ToString("N0"))</td>
+            <td>@(itemList.Sum(item=> item.ProductDiscunt).ToString("N0"))</td>
+            <td>@(itemList.Sum(item=> (item.ProductCount * item.ProductPrice) - item.ProductDiscunt).ToString("N0"))</td>
+            <td>@(itemList.Sum(item=> ((item.ProductCount * item.ProductPrice) - item.ProductDiscunt) * 9 / 100).ToString("N0"))</td>
+            <td>@(itemList.Sum(item=> (((item.ProductCount * item.ProductPrice) - item.ProductDiscunt) + (((item.ProductCount * item.ProductPrice) - item.ProductDiscunt) * 9 / 100))).ToString("N0"))</td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+
+
+
+

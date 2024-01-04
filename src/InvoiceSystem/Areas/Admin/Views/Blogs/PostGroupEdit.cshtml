@@ -1,0 +1,83 @@
+﻿@model InvoiceSystem.ViewModels.App.PostGroupViewModel
+@using InvoiceSystem.Areas.Admin.Controllers 
+
+@{
+    ViewBag.Title = "ویرایش گروه مطالب جدید";
+}
+<div class="col-md-12">
+    <h3>@ViewBag.Title</h3>
+</div>
+<form asp-antiforgery="true"
+      asp-action="@nameof(BlogController.PostGroupEdit)"
+      id="frmCreate"
+      method="post"
+      enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger" style="color:red;"></div>
+    <input asp-for="Id" type="hidden" />
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">مشخصات دسته بندی</h4>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Name" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Title" class="text-danger" style="color:red;"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Description"></label>
+                        <textarea class="form-control" asp-for="Description"></textarea>
+                        <span asp-validation-for="Description" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <!-- start: ACCORDION card -->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">
+                        وضعیت کلی دسته بندی
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @*<div class="form-group">
+                        <select asp-for="LanguageId" asp-items="ViewBag.Languages" class="form-control" data-width="100%" data-style="ui-select">
+                        </select>
+                        <span asp-validation-for="LanguageId" class="text-danger" style="color:red;"></span>
+                    </div>*@
+
+                    <div class="form-group">
+                        <label class="b-find__label" asp-for="Slug"></label>
+                        <input asp-for="Slug" class="form-control" autocomplete="off" />
+                        <span asp-validation-for="Slug" class="text-danger" style="color:red;"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="ویرایش" class="btn btn-success" />
+                        <a asp-action="@Url.Action(nameof(BlogController.PostGroupIndex))" class="btn btn-default">بازگشت</a>
+                    </div>
+                </div>
+                <!-- end: ACCORDION card -->
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        </script>
+}

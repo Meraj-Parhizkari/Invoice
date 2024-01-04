@@ -1,0 +1,179 @@
+﻿@inherits Microsoft.VisualStudio.Web.CodeGeneration.Templating.RazorTemplateBase
+@using Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore
+@using System.Collections.Generic
+@using System.Linq
+@@model @Model.ViewDataTypeName
+
+@{
+    if (Model.IsPartialView)
+    {
+    }
+    else if (Model.IsLayoutPageSelected)
+    {
+@:@@{
+    @:ViewData["Title"] = "@Model.ViewName";
+        if (!string.IsNullOrEmpty(Model.LayoutPageFile))
+        {
+    @:Layout = "@Model.LayoutPageFile";
+        }
+@:}
+@:
+@:
+    }
+    else
+    {
+@:@@{  
+    @:Layout = null;
+@:}
+@:
+@:<!DOCTYPE html>
+@:
+@:<html>
+@:<head>
+    @:<meta name="viewport" content="width=device-width" />
+    @:<title>@Model.ViewName</title>
+@:</head>
+@:<body>
+@:
+        //    PushIndent("    ");
+    }
+    @:<div class="Col-12">
+    @:<div class="card">
+    @:<div class="card-header">
+    <h3>
+    <b>اطلاعات</b>
+    </h3>
+    <hr />
+    @:</div>
+    @:<div class="card-content">
+    @:<div class="px-3">
+        @:<div class="form-body">
+    @:<div class="row">
+}
+@{
+    Dictionary<string, IPropertyMetadata> propertyLookup = ((IModelMetadata)Model.ModelMetadata).Properties.ToDictionary(x => x.PropertyName, x => x);
+    Dictionary<string, INavigationMetadata> navigationLookup = ((IModelMetadata)Model.ModelMetadata).Navigations.ToDictionary(x => x.AssociationPropertyName, x => x);
+
+        foreach (PropertyMetadata property in Model.ModelMetadata.Properties)
+        {
+            if (property.IsPrimaryKey)
+            {
+            @:<input type="hidden" asp-for="@property.PropertyName" />
+                continue;
+            }
+
+            if (property.Scaffold)
+            {
+                if (property.IsReadOnly)
+                {
+                    continue;
+                }
+
+                if (property.IsForeignKey)
+                {
+                 @:<div class="col-md-4">
+            @:<div class="form-group">
+                @:<label asp-for="@property.PropertyName" class="control-label"></label>
+                @:<select asp-for="@property.PropertyName" class="form-control" asp-items="ViewBag.@property.PropertyName" disabled></select>
+            @:</div>
+    @:</div>
+                    continue;
+                }
+
+                bool isCheckbox = property.TypeName.Equals("System.Boolean");
+                if (isCheckbox)
+                {
+                 @:<div class="col-md-4">
+            @:<div class="form-group">
+                @:<div class="checkbox">
+                    @:<label>
+                        @:<input asp-for="@property.PropertyName" disabled/> @@Html.DisplayNameFor(model => model.@GetValueExpression(property))
+                    @:</label>
+                @:</div>
+            @:</div>
+     @:</div>
+                }
+                else if (property.IsEnum && !property.IsEnumFlags)
+                {
+                 @:<div class="col-md-4">
+            @:<div class="form-group">
+                @:<label asp-for="@property.PropertyName" class="control-label"></label>
+                @:<select asp-for="@property.PropertyName" class="form-control" disabled></select>
+            @:</div>
+    @:</div>
+                }
+                else if (property.IsMultilineText)
+                {
+                 @:<div class="col-md-4">
+            @:<div class="form-group">
+                @:<label asp-for="@property.PropertyName" class="control-label"></label>
+                @:<textarea asp-for="@property.PropertyName" class="form-control" disabled></textarea>
+            @:</div>
+    @:</div>
+                }
+                else
+                {
+                 @:<div class="col-md-4">
+            @:<div class="form-group">
+                @:<label asp-for="@property.PropertyName" class="control-label"></label>
+                @:<input asp-for="@property.PropertyName" class="form-control" disabled/>
+            @:</div>
+           @:</div>
+                }
+            }
+            // Ideally we shouldn't be here  but if the user marks the foreign key as [ScaffoldColumn(false)], we want to atleast try to make it work.
+            else if (property.IsForeignKey)
+            {
+        @:<input type="hidden" asp-for="@property.PropertyName" />
+                continue;
+            }
+        }
+    }
+</div>
+@{
+    string pkName = GetPrimaryKeyName();
+    if (pkName != null)
+    {
+    @:<div class="form-actions right">
+    @:<a asp-action="Edit" class="btn btn-raised btn-primary" asp-route-id="@@Model.@pkName"> <i class="fa fa-check-square-o"></i> ویرایش</a> 
+    @:<a asp-action="Index" class="btn btn-raised btn-warning"><i class="ft-x"></i>بازگشت</a>
+    @:</div>
+    }
+    else
+    {
+    @:@@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @:<a asp-action="Index">Back to List</a>
+    }
+}
+</div>
+    </div>  
+    </div>
+</div>
+</div>
+@{
+    if (!Model.IsPartialView && !Model.IsLayoutPageSelected)
+    {
+        //ClearIndent();
+@:</body>
+@:</html>
+    }
+}
+@functions
+{
+    string GetPrimaryKeyName()
+    {
+        return (Model.ModelMetadata.PrimaryKeys != null && Model.ModelMetadata.PrimaryKeys.Length == 1)
+        ? Model.ModelMetadata.PrimaryKeys[0].PropertyName
+        : null;
+    }
+
+    string GetValueExpression(IPropertyMetadata property)
+    {
+        return property.PropertyName;
+    }
+
+    string GetValueExpression(INavigationMetadata navigation)
+    {
+        return navigation.AssociationPropertyName;
+    }
+}
