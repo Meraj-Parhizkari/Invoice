@@ -69,12 +69,12 @@ namespace InvoiceSystem.Areas.Admin.Controllers
         public async Task<IActionResult> Create(ProductCategory productCategory)
         {
             //var userId=User.Identity.GetUserId<int>();
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
                await _productCategory.Create(productCategory);
                 //await _productCategory.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
+            //}
             ViewData["Parents"] = new SelectList(await _productCategory.GetAll(User.Identity.GetUserId<int>()), "Id", "Name", productCategory.ParentId);
 
             return View(productCategory);

@@ -61,7 +61,9 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label name="province" class="control-label">استان</label>
-                                    <select name="province" id="province" class="form-control" asp-items="ViewBag.countryDivisionsprovince"></select>
+                                    <select name="province" id="province" class="form-control" asp-items="ViewBag.countryDivisionsprovince">
+                                        <option>لطفا استان مورد نظر را انتخاب نمایید.</option>
+                                    </select>
                                     @*<span asp-validation-for="TownId" class="text-danger"></span>*@
                                 </div>
                             </div>

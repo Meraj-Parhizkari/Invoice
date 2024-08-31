@@ -31,7 +31,7 @@ namespace InvoiceSystem.Areas.Admin.Controllers
         {
             var result = await _countryDivisions.GetAll();
             return View(result);
-            
+
 
         }
 
@@ -68,11 +68,8 @@ namespace InvoiceSystem.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CountryDivision countryDivision)
         {
-            if (ModelState.IsValid)
-            {
-                _countryDivisions.Create(countryDivision);
-                return RedirectToAction(nameof(Index));
-            }
+            _countryDivisions.Create(countryDivision);
+            return RedirectToAction(nameof(Index));
             return View(countryDivision);
         }
 
@@ -99,7 +96,7 @@ namespace InvoiceSystem.Areas.Admin.Controllers
         // گرفتن اطلاعات برای ویرایش در صفحه ویرایش از طریق ایدی
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,CountryDivision countryDivision)
+        public async Task<IActionResult> Edit(int id, CountryDivision countryDivision)
         {
             if (id != countryDivision.Id)
             {

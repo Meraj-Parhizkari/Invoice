@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace InvoiceSystem.Common.Public
@@ -20,9 +21,11 @@ namespace InvoiceSystem.Common.Public
 
             };
         }
-public enum DivisionEnum
+        public enum DivisionEnum
         {
+            [Display(Name = "استان")]
             Province = 1,
+            [Display(Name = "شهرستان")]
             City = 2,
         }
 
@@ -45,7 +48,8 @@ public enum DivisionEnum
         }
 
 
-        public enum PersonTypeEnum { 
+        public enum PersonTypeEnum
+        {
             Real = 1,
             Legal = 2
         }
